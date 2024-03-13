@@ -6,43 +6,43 @@
  * @public
  */
 export class Deferred<T> {
-    // The promise object associated with the deferred operation.
-    #_promise: Promise<T>
-    /**
-     * The function to call to resolve the deferred operation.
-     */
-    #_resolve!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[0]
-    /**
-     * The function to call to reject the deferred operation.
-     */
-    #_reject!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[1]
-    /**
-     * Creates a new instance of the Deferred class.
-     */
-    constructor() {
-        this.#_promise = new Promise<T>((resolve, reject) => {
-            this.#_resolve = resolve
-            this.#_reject = reject
-        })
-    }
-    /**
-     * Gets the promise object associated with the deferred operation.
-     */
-    get promise() {
-        return this.#_promise
-    }
-    /**
-     * Gets the function to call to resolve the deferred operation.
-     */
-    get resolve() {
-        return this.#_resolve
-    }
-    /**
-     * Gets the function to call to reject the deferred operation.
-     */
-    get reject() {
-        return this.#_reject
-    }
+  // The promise object associated with the deferred operation.
+  #_promise: Promise<T>;
+  /**
+   * The function to call to resolve the deferred operation.
+   */
+  #_resolve!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[0];
+  /**
+   * The function to call to reject the deferred operation.
+   */
+  #_reject!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[1];
+  /**
+   * Creates a new instance of the Deferred class.
+   */
+  constructor() {
+    this.#_promise = new Promise<T>((resolve, reject) => {
+      this.#_resolve = resolve;
+      this.#_reject = reject;
+    });
+  }
+  /**
+   * Gets the promise object associated with the deferred operation.
+   */
+  get promise() {
+    return this.#_promise;
+  }
+  /**
+   * Gets the function to call to resolve the deferred operation.
+   */
+  get resolve() {
+    return this.#_resolve;
+  }
+  /**
+   * Gets the function to call to reject the deferred operation.
+   */
+  get reject() {
+    return this.#_reject;
+  }
 }
 /**
  * Stringify an Error instance
@@ -50,8 +50,8 @@ export class Deferred<T> {
  * @internal
  */
 export function stringifyErrorValue(err: Error): string {
-    return `${err.name.toUpperCase()}: ${err.message}
-    ${err.stack || '(no stack trace information)'}`
+  return `${err.name.toUpperCase()}: ${err.message}
+    ${err.stack || "(no stack trace information)"}`;
 }
 /**
  * Stringify a thrown value
@@ -61,10 +61,11 @@ export function stringifyErrorValue(err: Error): string {
  * @beta
  */
 export function stringifyError(err: unknown, errorDescription?: string) {
-    return `${errorDescription ?? "( no error description )"}\n${err instanceof Error
-            ? stringifyErrorValue(err)
-            : err
-                ? '' + err
-                : '(missing error information)'
-        }`
+  return `${errorDescription ?? "( no error description )"}\n${
+    err instanceof Error
+      ? stringifyErrorValue(err)
+      : err
+        ? "" + String(err)
+        : "(missing error information)"
+  }`;
 }
