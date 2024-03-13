@@ -1,0 +1,23 @@
+{
+    "name": "SiteSpeedAudit",
+    "version": "1.0.0",
+    "license": "MIT",
+    "packageManager": "yarn@3.6.4",
+    "description": "CLI tool enhancing site speed and SEO with performance insights and optimization",
+    "author": "Ali Amer",
+    "types": "dist/index.d.ts",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "yarn tsc",
+        "dev": "yarn build --watch --preserveWatchOutput",
+        "lint": "yarn eslint src --ext js,ts",
+        "test": "yarn jest"
+    },
+    "volta": {
+        "node": "20.11.1",
+        "yarn": "3.8.1"
+    },
+    "devDependencies": {
+        "typescript": "^5.4.2"
+    }
+}
